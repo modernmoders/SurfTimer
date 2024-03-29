@@ -314,7 +314,11 @@ public void ckAdminMenu(int client)
 		AddMenuItem(adminmenu, szTmp, szTmp);
 		menuItemNumber++;
 
-		Format(szTmp, sizeof(szTmp), "[%i.] Allow custom models  -  %s", menuItemNumber, (g_hPlayerSkinChange.BoolValue) ? "Enabled" : "Disabled");
+		Format(szTmp, sizeof(szTmp), "[%i.] Allow custom player models  -  %s", menuItemNumber, (g_hPlayerSkinChange.BoolValue) ? "Enabled" : "Disabled");
+		AddMenuItem(adminmenu, szTmp, szTmp);
+		menuItemNumber++;
+
+		Format(szTmp, sizeof(szTmp), "[%i.] Allow custom bot models  -  %s", menuItemNumber, (g_hBotSkinChange.BoolValue) ? "Enabled" : "Disabled");
 		AddMenuItem(adminmenu, szTmp, szTmp);
 		menuItemNumber++;
 
@@ -385,6 +389,10 @@ public void ckAdminMenu(int client)
 		else if (g_AdminMenuLastPage[client] < 42)
 		{
 			DisplayMenuAtItem(adminmenu, client, 36, MENU_TIME_FOREVER);
+		}
+		else if (g_AdminMenuLastPage[client] < 48)
+		{
+			DisplayMenuAtItem(adminmenu, client, 42, MENU_TIME_FOREVER);
 		}
 	}
 	else
@@ -485,43 +493,47 @@ public int AdminPanelHandler(Handle menu, MenuAction action, int param1, int par
 			{
 				ServerCommand("ck_custom_models %d", (g_hPlayerSkinChange.BoolValue) ? 0 : 1);
 			}
-
 			case 15:
 			{
-				ServerCommand("ck_noclip %d", (g_hNoClipS.BoolValue) ? 0 : 1);
+				ServerCommand("ck_custom_bot_models %d", (g_hBotSkinChange.BoolValue) ? 0 : 1);
 			}
 
 			case 16:
 			{
-				ServerCommand("ck_auto_bhop %d", (g_hAutoBhopConVar.BoolValue) ? 0 : 1);
+				ServerCommand("ck_noclip %d", (g_hNoClipS.BoolValue) ? 0 : 1);
 			}
 
 			case 17:
 			{
-				ServerCommand("ck_map_end %d", (g_hMapEnd.BoolValue) ? 0 : 1);
+				ServerCommand("ck_auto_bhop %d", (g_hAutoBhopConVar.BoolValue) ? 0 : 1);
 			}
 
 			case 18:
 			{
-				ServerCommand("ck_connect_msg %d", (g_hConnectMsg.BoolValue) ? 0 : 1);
+				ServerCommand("ck_map_end %d", (g_hMapEnd.BoolValue) ? 0 : 1);
 			}
 
 			case 19:
 			{
-				ServerCommand("ck_disconnect_msg %d", (g_hDisconnectMsg.BoolValue) ? 0 : 1);
+				ServerCommand("ck_connect_msg %d", (g_hConnectMsg.BoolValue) ? 0 : 1);
 			}
 
 			case 20:
 			{
-				ServerCommand("ck_info_bot %d", (g_hInfoBot.BoolValue) ? 0 : 1);
+				ServerCommand("ck_disconnect_msg %d", (g_hDisconnectMsg.BoolValue) ? 0 : 1);
 			}
 
 			case 21:
 			{
-				ServerCommand("ck_attack_spam_protection %d", (g_hAttackSpamProtection.BoolValue) ? 0 : 1);
+				ServerCommand("ck_info_bot %d", (g_hInfoBot.BoolValue) ? 0 : 1);
 			}
 
 			case 22:
+			{
+				ServerCommand("ck_attack_spam_protection %d", (g_hAttackSpamProtection.BoolValue) ? 0 : 1);
+			}
+
+			case 23:
 			{
 				ServerCommand("ck_round_end %d", (g_hAllowRoundEndCvar.BoolValue) ? 0 : 1);
 			}
