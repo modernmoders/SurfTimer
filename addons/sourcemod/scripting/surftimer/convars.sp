@@ -53,6 +53,7 @@ int g_AttackCounter[MAXPLAYERS + 1];							// Used to calculate player shots
 ConVar g_hGoToServer = null;									// Allow !goto?
 ConVar g_hAllowRoundEndCvar = null;								// Allow round ending?
 bool g_bRoundEnd;												// Why two bools?
+ConVar g_hBotSkinChange = null;									// Allow changing bot models?
 ConVar g_hPlayerSkinChange = null;								// Allow changing player models?
 ConVar g_hCountry = null;										// Display countries for players?
 ConVar g_hAutoRespawn = null;									// Respawn players automatically?
@@ -166,15 +167,17 @@ void CreateConVars()
 
 	g_hPointSystem = AutoExecConfig_CreateConVar("ck_point_system", "1", "on/off - Player point system", _, true, 0.0, true, 1.0);
 	HookConVarChange(g_hPointSystem, OnSettingChanged);
-	g_hPlayerSkinChange = AutoExecConfig_CreateConVar("ck_custom_models", "1", "on/off - Allows SurfTimer to change the models of players and bots", _, true, 0.0, true, 1.0);
+	g_hBotSkinChange =  AutoExecConfig_CreateConVar("ck_custom_bot_models", "1", "on/off - Allows SurfTimer to change the models of bots", _, true, 0.0, true, 1.0);
+	HookConVarChange(g_hBotSkinChange, OnSettingChanged);
+	g_hPlayerSkinChange = AutoExecConfig_CreateConVar("ck_custom_models", "1", "on/off - Allows SurfTimer to change the models of players", _, true, 0.0, true, 1.0);
 	HookConVarChange(g_hPlayerSkinChange, OnSettingChanged);
-	g_hReplayBotPlayerModel = AutoExecConfig_CreateConVar("ck_replay_bot_skin", "models/player/tm_professional_var1.mdl", "Replay pro bot skin");
+	g_hReplayBotPlayerModel = AutoExecConfig_CreateConVar("ck_replay_bot_skin", "models/player/custom_player/kuristaja/octodad/octodad_tuxedo.mdl", "Replay pro bot skin");
 	HookConVarChange(g_hReplayBotPlayerModel, OnSettingChanged);
-	g_hReplayBotArmModel = AutoExecConfig_CreateConVar("ck_replay_bot_arm_skin", "models/weapons/t_arms_professional.mdl", "Replay pro bot arm skin");
+	g_hReplayBotArmModel = AutoExecConfig_CreateConVar("ck_replay_bot_arm_skin", "models/player/custom_player/kuristaja/octodad/octodad_black_arms.mdl", "Replay pro bot arm skin");
 	HookConVarChange(g_hReplayBotArmModel, OnSettingChanged);
-	g_hPlayerModel = AutoExecConfig_CreateConVar("ck_player_skin", "models/player/ctm_sas_varianta.mdl", "Player skin");
+	g_hPlayerModel = AutoExecConfig_CreateConVar("ck_player_skin", "models/player/wcsnik/animals/pig/pig_v2.mdl", "Player skin");
 	HookConVarChange(g_hPlayerModel, OnSettingChanged);
-	g_hArmModel = AutoExecConfig_CreateConVar("ck_player_arm_skin", "models/weapons/ct_arms_sas.mdl", "Player arm skin");
+	g_hArmModel = AutoExecConfig_CreateConVar("ck_player_arm_skin", "models/player/wcsnik/animals/pig/pig_arms.mdl", "Player arm skin");
 	HookConVarChange(g_hArmModel, OnSettingChanged);
 	g_hAutoBhopConVar = AutoExecConfig_CreateConVar("ck_auto_bhop", "1", "on/off - AutoBhop on surf_ maps", _, true, 0.0, true, 1.0);
 	HookConVarChange(g_hAutoBhopConVar, OnSettingChanged);
