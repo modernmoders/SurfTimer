@@ -832,7 +832,7 @@ public void LoadRecordReplay()
 		PlayRecord(g_RecordBot, 0, 0, 0);
 		// We can start multiple bots but first we need to get if bot has finished playing???
 		SetEntityRenderColor(g_RecordBot, g_ReplayBotColor[0], g_ReplayBotColor[1], g_ReplayBotColor[2], 50);
-		if (GetConVarBool(g_hPlayerSkinChange))
+		if (GetConVarBool(g_hBotSkinChange))
 		{
 			char szBuffer[256];
 			GetConVarString(g_hReplayBotPlayerModel, szBuffer, 256);
@@ -895,7 +895,7 @@ public void LoadBonusReplay()
 
 		PlayRecord(g_BonusBot, 1, 0, 0);
 		SetEntityRenderColor(g_BonusBot, g_BonusBotColor[0], g_BonusBotColor[1], g_BonusBotColor[2], 50);
-		if (GetConVarBool(g_hPlayerSkinChange))
+		if (GetConVarBool(g_hBotSkinChange))
 		{
 			char szBuffer[256];
 			GetConVarString(g_hReplayBotPlayerModel, szBuffer, 256);
@@ -955,7 +955,7 @@ public void LoadWrcpReplay()
 
 		PlayRecord(g_WrcpBot, -g_StageReplayCurrentStage, 0, 0);
 		SetEntityRenderColor(g_WrcpBot, 180, 142, 173, 50);
-		if (GetConVarBool(g_hPlayerSkinChange))
+		if (GetConVarBool(g_hBotSkinChange))
 		{
 			char szBuffer[256];
 			GetConVarString(g_hReplayBotPlayerModel, szBuffer, 256);
